@@ -1,0 +1,16 @@
+﻿{% extends "base.html" %}
+{% set title = "Login" %}
+{% block content %}
+<main class="auth-shell">
+    <form class="auth-card" method="post">
+        <p class="eyebrow">Welcome back</p>
+        <h1>Login to your dashboard</h1>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <label>Email<input type="email" name="email" value="riya@example.com" required></label>
+        <label>Password<input type="password" name="password" value="1234" required></label>
+        <button type="submit">Login</button>
+        <p class="switch-link">Demo login: riya@example.com / 1234</p>
+        <p class="switch-link">New here? <a href="{{ url_for('signup') }}">Create account</a></p>
+    </form>
+</main>
+{% endblock %}

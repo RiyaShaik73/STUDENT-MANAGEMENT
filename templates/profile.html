@@ -1,0 +1,11 @@
+﻿{% extends "base.html" %}
+{% set title = "Profile" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head"><div><p class="eyebrow">Profile</p><h1>{{ user.name }}</h1><p>{{ user.role }}</p></div><div class="avatar">{{ user.avatar }}</div></section>
+    <section class="profile-grid">
+        <article class="panel"><h2>Student Info</h2><p><b>Email:</b> {{ user.email }}</p><p><b>Batch:</b> {{ user.batch }}</p><p><b>City:</b> {{ user.city }}</p><p><b>Course:</b> {{ progress.course }}</p></article>
+        <article class="panel"><h2>LMS Progress</h2><p><b>Completed Lessons:</b> {{ progress.lms_progress.completed_lessons }} / {{ progress.lms_progress.total_lessons }}</p><p><b>Last Topic:</b> {{ progress.lms_progress.last_topic }}</p><p><b>Attendance:</b> {{ progress.lms_progress.attendance_percentage }}%</p></article>
+    </section>
+</main>
+{% endblock %}

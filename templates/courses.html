@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% set title = "Courses" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head">
+        <div>
+            <p class="eyebrow">Courses</p>
+            <h1>Learning modules</h1>
+            <p>Continue your lessons and see how much of each module is completed.</p>
+        </div>
+    </section>
+
+    <section class="course-grid">
+        {% for module in progress.course_modules %}
+        {% set percent = ((module.completed / module.lessons) * 100) | round | int %}
+        <article class="panel course-card">
+            <span class="level">{{ module.level }}</span>
+            <h2>{{ module.title }}</h2>
+            <p>{{ module.completed }} of {{ module.lessons }} lessons completed</p>
+            <div class="progress"><i style="width: {{ percent }}%"></i></div>
+            <strong>{{ percent }}%</strong>
+        </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}

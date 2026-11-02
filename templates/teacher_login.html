@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set title = "Teacher Login" %}
+{% block content %}
+<main class="auth-shell">
+    <form class="auth-card" method="post">
+        <p class="eyebrow">Instructor Access</p>
+        <h1>Teacher Login</h1>
+        {% if error %}<p class="error">{{ error }}</p>{% endif %}
+        <label>Email<input type="email" name="email" value="teacher@example.com" required></label>
+        <label>Password<input type="password" name="password" value="teachpass" required></label>
+        <button type="submit">Login</button>
+        <p class="switch-link">Demo login: teacher@example.com / teachpass</p>
+    </form>
+</main>
+{% endblock %}

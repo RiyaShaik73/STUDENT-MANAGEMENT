@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Learning Progress' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('home') }}">Unified Learning Platform</a>
+        <nav>
+            {% if nav_user %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('practice') }}">Practice</a>
+            <a href="{{ url_for('courses') }}">Courses</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('analytics') }}">Analytics</a>
+            <a href="{{ url_for('assignments') }}">Assignments</a>
+            <a href="{{ url_for('study_plan') }}">Study Plan</a>
+            <a class="nav-button" href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            <a class="nav-button" href="{{ url_for('signup') }}">Signup</a>
+            {% endif %}
+        </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

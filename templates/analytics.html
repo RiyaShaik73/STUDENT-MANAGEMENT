@@ -1,0 +1,12 @@
+﻿{% extends "base.html" %}
+{% set title = "Analytics" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head"><div><p class="eyebrow">Performance Analytics</p><h1>Progress trends</h1><p>Graphs and learning insights from LMS, coding practice, and skills.</p></div></section>
+    <section class="two-column">
+        <article class="panel"><h2>Monthly Performance</h2><div class="line-chart" data-values="{{ progress.monthly_performance | join(',') }}"></div></article>
+        <article class="panel"><h2>Coding Platform Stats</h2><p><b>Total:</b> {{ progress.coding_platform_stats.problems_solved }}</p><p><b>Easy:</b> {{ progress.coding_platform_stats.easy }}</p><p><b>Medium:</b> {{ progress.coding_platform_stats.medium }}</p><p><b>Hard:</b> {{ progress.coding_platform_stats.hard }}</p></article>
+    </section>
+    <section class="panel"><h2>Improvement Plan</h2>{% for action in progress.recommended_actions %}<p class="check-item">{{ action }}</p>{% endfor %}</section>
+</main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set title = "Student Report" %}
+{% block content %}
+<main class="container">
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% else %}
+    <h1>Report: {{ student.name }}</h1>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Last login:</strong> {{ last_login or '—' }}</p>
+    <p><strong>Last 30 days active:</strong> {{ last_30 }} days ({{ last_30_percent }}%)</p>
+    <h2>Summary</h2>
+    <p><strong>LMS Completion:</strong> {{ data.completion_percentages.lms_completion }}%</p>
+    <p><strong>Assignment Completion:</strong> {{ data.completion_percentages.assignment_completion }}%</p>
+    <p><strong>Attendance:</strong> {{ data.completion_percentages.attendance }}%</p>
+
+    <h3>Skills</h3>
+    <ul>
+    {% for name, val in data.skill_dashboard.items() %}
+        <li>{{ name }}: {{ val }}%</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Weak Areas</h3>
+    <ul>
+    {% for w in data.weak_areas %}
+        <li>{{ w }}</li>
+    {% endfor %}
+    </ul>
+
+    <h3>Activity Calendar — {{ month_name }} {{ year }}</h3>
+    <div class="calendar">
+        <div class="calendar-grid">
+            {% for d in month_days %}
+                <div class="calendar-cell {% if d.active %}active{% endif %}">
+                    <span class="day">{{ d.day }}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <p><a href="{{ url_for('teacher_dashboard') }}">Back to teacher dashboard</a></p>
+    {% endif %}
+</main>
+{% endblock %}

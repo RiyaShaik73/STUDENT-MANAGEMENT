@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set title = "Study Plan" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head">
+        <div>
+            <p class="eyebrow">Study Plan</p>
+            <h1>Today's study schedule</h1>
+            <p>A simple plan for lessons, coding practice, assignments, and revision.</p>
+        </div>
+    </section>
+
+    <section class="timeline">
+        {% for item in progress.study_plan %}
+        <article class="timeline-item">
+            <span>{{ item.time }}</span>
+            <div>
+                <strong>{{ item.task }}</strong>
+                <p>{{ item.type }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+    <section class="panel">
+        <h2>Recommended revision</h2>
+        {% for action in progress.recommended_actions %}
+        <p class="check-item">{{ action }}</p>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}

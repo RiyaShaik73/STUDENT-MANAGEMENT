@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set title = "Teacher Dashboard" %}
+{% block content %}
+<main class="container">
+    <h1>Welcome, {{ teacher.name }}</h1>
+    <section>
+        <h2>Your Students</h2>
+        {% if students %}
+        <table class="student-table">
+            <thead>
+                <tr><th>Student</th><th>Last Login</th><th>30d Active</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            {% for s in students %}
+            <tr>
+                <td><strong>{{ s.name }}</strong><br><small>{{ s.email }}</small></td>
+                <td>{{ s.last_login or '—' }}</td>
+                <td>{{ s.last_30_days_active }} days ({{ s.last_30_days_percent }}%)</td>
+                <td><a href="{{ url_for('teacher_student', email=s.email) }}">View report</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No students assigned.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

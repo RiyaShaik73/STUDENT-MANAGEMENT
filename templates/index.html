@@ -1,0 +1,52 @@
+﻿{% extends "base.html" %}
+{% set title = "Home - Learning Progress" %}
+{% block content %}
+<main class="home-shell">
+    <section class="home-hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Student Coding Dashboard</p>
+            <h1><span>Unified Learning Platform</span></h1>
+            <p>One place for courses, practice problems, assignments, weak areas, performance analytics, and daily study planning.</p>
+            <div class="hero-actions">
+                <a class="primary" href="{{ url_for('signup') }}">Start Learning</a>
+                <a class="secondary" href="{{ url_for('login') }}">Login</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="platform-preview">
+        <div class="preview-header">
+            <div>
+                <p class="eyebrow">Live Workspace Preview</p>
+                <h2>Everything related to studies in one dashboard</h2>
+            </div>
+            <a href="{{ url_for('login') }}">Open Demo</a>
+        </div>
+        <div class="preview-grid">
+            <div class="hero-panel code-panel">
+            <div class="problem-header">
+                <span>Today's Focus</span>
+                <strong>API Progress Challenge</strong>
+            </div>
+            <div class="problem-list">
+                <div><b>Easy</b><span>GET student progress</span><em>Solved</em></div>
+                <div><b>Medium</b><span>POST new assignment</span><em>Practice</em></div>
+                <div><b>Hard</b><span>Build analytics response</span><em>Next</em></div>
+            </div>
+            </div>
+            <div class="preview-stats">
+                <article><span>Course Progress</span><strong>68%</strong></article>
+                <article><span>Problems Solved</span><strong>76</strong></article>
+                <article><span>Study Streak</span><strong>8 days</strong></article>
+                <article><span>Assignments</span><strong>3 active</strong></article>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-grid">
+        <article><h2>Courses</h2><p>Continue modules and see lesson completion clearly.</p></article>
+        <article><h2>Practice</h2><p>Solve API problems with difficulty, topic, and status.</p></article>
+        <article><h2>Analytics</h2><p>Review skills, weak areas, graphs, and performance trends.</p></article>
+    </section>
+</main>
+{% endblock %}

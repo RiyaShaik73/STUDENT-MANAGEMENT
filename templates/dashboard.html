@@ -1,0 +1,46 @@
+﻿{% extends "base.html" %}
+{% set title = "Dashboard" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head">
+        <div>
+            <p class="eyebrow">Student Dashboard</p>
+            <h1>Hello, {{ user.name }}</h1>
+            <p>{{ user.batch }} - {{ progress.course }}</p>
+        </div>
+        <div class="avatar">{{ user.avatar }}</div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card"><span>LMS Completion</span><strong>{{ lms_completion }}%</strong><div class="progress"><i style="width: {{ lms_completion }}%"></i></div></article>
+        <article class="stat-card"><span>Problems Solved</span><strong>{{ progress.coding_platform_stats.problems_solved }}</strong><div class="tiny-note">{{ progress.coding_platform_stats.current_streak }} day streak</div></article>
+        <article class="stat-card"><span>Attendance</span><strong>{{ progress.lms_progress.attendance_percentage }}%</strong><div class="progress"><i style="width: {{ progress.lms_progress.attendance_percentage }}%"></i></div></article>
+        <article class="stat-card"><span>Assignments</span><strong>{{ assignment_completion }}%</strong><div class="progress"><i style="width: {{ assignment_completion }}%"></i></div></article>
+    </section>
+
+    <section class="platform-grid">
+        <a class="platform-card" href="{{ url_for('practice') }}"><span>Practice</span><strong>{{ progress.problem_bank | length }} problems</strong><p>Topic-wise API challenges with status and accuracy.</p></a>
+        <a class="platform-card" href="{{ url_for('courses') }}"><span>Courses</span><strong>{{ progress.course_modules | length }} modules</strong><p>Continue lessons and track module completion.</p></a>
+        <a class="platform-card" href="{{ url_for('study_plan') }}"><span>Study Plan</span><strong>Today</strong><p>Daily schedule for lessons, practice, and assignments.</p></a>
+    </section>
+
+    <section class="two-column">
+        <article class="panel">
+            <div class="panel-title"><h2>Weekly Problems Solved</h2><a href="{{ url_for('analytics') }}">Details</a></div>
+            <div class="bar-chart" data-values="{{ progress.weekly_problems | join(',') }}"></div>
+        </article>
+        <article class="panel">
+            <div class="panel-title"><h2>Skill Dashboard</h2><a href="{{ url_for('profile') }}">Profile</a></div>
+            {% for skill, value in progress.skills.items() %}
+            <div class="skill-line"><span>{{ skill }}</span><b>{{ value }}%</b><div><i style="width: {{ value }}%"></i></div></div>
+            {% endfor %}
+        </article>
+    </section>
+
+    <section class="three-column">
+        <article class="panel"><h2>Problems Split</h2><p>Easy: {{ progress.coding_platform_stats.easy }}</p><p>Medium: {{ progress.coding_platform_stats.medium }}</p><p>Hard: {{ progress.coding_platform_stats.hard }}</p></article>
+        <article class="panel"><h2>Weak Areas</h2>{% for area in progress.weak_areas %}<p class="pill">{{ area }}</p>{% endfor %}</article>
+        <article class="panel"><h2>Next Actions</h2>{% for action in progress.recommended_actions %}<p class="check-item">{{ action }}</p>{% endfor %}</article>
+    </section>
+</main>
+{% endblock %}

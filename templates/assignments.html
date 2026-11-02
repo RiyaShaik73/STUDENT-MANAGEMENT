@@ -1,0 +1,15 @@
+﻿{% extends "base.html" %}
+{% set title = "Assignments" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head"><div><p class="eyebrow">Assignments</p><h1>Task tracker</h1><p>Check submission status, score, and pending work.</p></div></section>
+    <section class="panel">
+        <div class="table">
+            <div class="table-row table-head"><span>Assignment</span><span>Status</span><span>Score</span><span>Due</span></div>
+            {% for item in progress.assignments %}
+            <div class="table-row"><span>{{ item.title }}</span><span class="status">{{ item.status }}</span><span>{{ item.score }}%</span><span>{{ item.due }}</span></div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% set title = "Practice" %}
+{% block content %}
+<main class="app-shell">
+    <section class="dashboard-head">
+        <div>
+            <p class="eyebrow">Practice Arena</p>
+            <h1>API problem bank</h1>
+            <p>Solve topic-wise questions like a coding platform and track difficulty, status, and accuracy.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="table practice-table">
+            <div class="table-row table-head"><span>Problem</span><span>Difficulty</span><span>Topic</span><span>Status</span><span>Accuracy</span></div>
+            {% for problem in progress.problem_bank %}
+            <div class="table-row problem-row">
+                <span>{{ problem.title }}</span>
+                <span class="difficulty {{ problem.difficulty | lower }}">{{ problem.difficulty }}</span>
+                <span>{{ problem.topic }}</span>
+                <span class="status">{{ problem.status }}</span>
+                <span>{{ problem.accuracy }}%</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}
